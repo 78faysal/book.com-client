@@ -1,0 +1,170 @@
+[
+    {
+        "id": 101,
+        "type": "Deluxe Room",
+        "description": "Experience the epitome of luxury in our Deluxe Room. Elegant decor, stunning views, and unparalleled comfort await you.",
+        "price": 250,
+        "size": "400 sq. ft.",
+        "image": "https://i.ibb.co/KhdrwvT/room1.jpg",
+        "offer": "Complimentary Breakfast",
+        "reviews": [
+            {
+                "user": "Guest123",
+                "rating": 4.8,
+                "comment": "Wonderful stay with amazing amenities!"
+            },
+            {
+                "user": "Traveler456",
+                "rating": 4.5,
+                "comment": "Fantastic room service and attention to detail."
+            }
+        ]
+    },
+    {
+        "id": 102,
+        "type": "Executive Suite",
+        "description": "Indulge in the lavish comfort of our Executive Suite. Spacious interiors, a private balcony, and personalized service redefine luxury.",
+        "price": 450,
+        "size": "650 sq. ft.",
+        "image": "https://i.ibb.co/Zc1GnWF/room2.jpg",
+        "offer": "Free Spa Treatment",
+        "reviews": [
+            {
+                "user": "LuxuryLover789",
+                "rating": 4.9,
+                "comment": "Exquisite suite with top-notch amenities."
+            },
+            {
+                "user": "Jetsetter",
+                "rating": 5.0,
+                "comment": "Incredible views and impeccable service!"
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "type": "Family Suite",
+        "description": "Create lasting memories in our Family Suite. Thoughtfully designed for comfort, it's the perfect retreat for you and your loved ones.",
+        "price": 550,
+        "size": "800 sq. ft.",
+        "image": "https://i.ibb.co/1L7W2Sy/room3.jpg",
+        "offer": "Kids Stay Free",
+        "reviews": [
+            {
+                "user": "FamilyExplorer",
+                "rating": 4.7,
+                "comment": "Ideal for a family getaway, spacious and kid-friendly."
+            },
+            {
+                "user": "AdventureSeeker",
+                "rating": 4.5,
+                "comment": "Great family-oriented amenities, loved the experience."
+            }
+        ]
+    },
+    {
+        "id": 104,
+        "type": "Premium Ocean View Room",
+        "description": "Immerse yourself in breathtaking views of the ocean in our Premium Ocean View Room. A perfect blend of luxury and natural beauty.",
+        "price": 350,
+        "size": "450 sq. ft.",
+        "image": "https://i.ibb.co/r5KbcwQ/room4.jpg",
+        "offer": "Champagne Welcome",
+        "reviews": [
+            {
+                "user": "OceanEnthusiast",
+                "rating": 4.6,
+                "comment": "Spectacular views and a truly relaxing experience."
+            },
+            {
+                "user": "SunsetWatcher",
+                "rating": 4.8,
+                "comment": "The sunset from the room was magical!"
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "type": "Presidential Suite",
+        "description": "Indulge in the pinnacle of luxury with our Presidential Suite. Unmatched grandeur, exclusive services, and panoramic city views.",
+        "price": 1200,
+        "size": "1200 sq. ft.",
+        "image": "https://i.ibb.co/dcd4kbq/room8.jpg",
+        "offer": "24/7 Personal Concierge",
+        "reviews": [
+            {
+                "user": "VIPGuest1",
+                "rating": 5.0,
+                "comment": "A stay fit for royalty, exceeded all expectations!"
+            },
+            {
+                "user": "GlobalExplorer",
+                "rating": 4.9,
+                "comment": "Luxury at its finest, impeccable service throughout."
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "type": "Chic Urban Studio",
+        "description": "Discover modern elegance in our Chic Urban Studio. Stylish interiors, cityscape views, and a trendy atmosphere for the urban explorer.",
+        "price": 180,
+        "size": "300 sq. ft.",
+        "image": "https://i.ibb.co/vv2Cftw/room9.jpg",
+        "offer": "City Tour Package",
+        "reviews": [
+            {
+                "user": "CityNomad",
+                "rating": 4.5,
+                "comment": "Perfect for a solo traveler, loved the contemporary design."
+            },
+            {
+                "user": "StyleSeeker",
+                "rating": 4.7,
+                "comment": "Great location and chic aesthetics, a fantastic stay!"
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "type": "Romantic Hideaway Suite",
+        "description": "Escape to romance in our Romantic Hideaway Suite. Intimate ambiance, candlelit dinners, and dreamy nights for the perfect couple's retreat.",
+        "price": 500,
+        "size": "600 sq. ft.",
+        "image": "https://i.ibb.co/K7nVfx8/room6.jpg",
+        "offer": "Couples Massage Package",
+        "reviews": [
+            {
+                "user": "Lovebirds22",
+                "rating": 4.8,
+                "comment": "A truly romantic escape, every detail was enchanting."
+            },
+            {
+                "user": "EternalRomance",
+                "rating": 5.0,
+                "comment": "Magical atmosphere, perfect for a romantic getaway."
+            }
+        ]
+    },
+    {
+        "id": 108,
+        "type": "Business Executive Room",
+        "description": "Elevate your business stay in our Business Executive Room. Sophisticated design, ergonomic workspace, and exclusive amenities for the modern professional.",
+        "price": 280,
+        "size": "400 sq. ft.",
+        "image": "https://i.ibb.co/khF800n/room5.jpg",
+        "offer": "Complimentary Airport Transfer",
+        "reviews": [
+            {
+                "user": "BusinessNomad",
+                "rating": 4.6,
+                "comment": "Perfect for business trips, convenient and comfortable."
+            },
+            {
+                "user": "CorporateTraveler",
+                "rating": 4.7,
+                "comment": "Excellent services for business executives, highly recommended."
+            }
+        ]
+    }
+]
