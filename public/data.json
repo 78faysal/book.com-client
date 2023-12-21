@@ -1,6 +1,5 @@
 [
     {
-        "id": 101,
         "type": "Deluxe Room",
         "description": "Experience the epitome of luxury in our Deluxe Room. Elegant decor, stunning views, and unparalleled comfort await you.",
         "price": 250,
@@ -21,7 +20,6 @@
         ]
     },
     {
-        "id": 102,
         "type": "Executive Suite",
         "description": "Indulge in the lavish comfort of our Executive Suite. Spacious interiors, a private balcony, and personalized service redefine luxury.",
         "price": 450,
@@ -42,7 +40,6 @@
         ]
     },
     {
-        "id": 103,
         "type": "Family Suite",
         "description": "Create lasting memories in our Family Suite. Thoughtfully designed for comfort, it's the perfect retreat for you and your loved ones.",
         "price": 550,
@@ -63,7 +60,6 @@
         ]
     },
     {
-        "id": 104,
         "type": "Premium Ocean View Room",
         "description": "Immerse yourself in breathtaking views of the ocean in our Premium Ocean View Room. A perfect blend of luxury and natural beauty.",
         "price": 350,
@@ -84,7 +80,6 @@
         ]
     },
     {
-        "id": 105,
         "type": "Presidential Suite",
         "description": "Indulge in the pinnacle of luxury with our Presidential Suite. Unmatched grandeur, exclusive services, and panoramic city views.",
         "price": 1200,
@@ -105,7 +100,6 @@
         ]
     },
     {
-        "id": 106,
         "type": "Chic Urban Studio",
         "description": "Discover modern elegance in our Chic Urban Studio. Stylish interiors, cityscape views, and a trendy atmosphere for the urban explorer.",
         "price": 180,
@@ -126,7 +120,6 @@
         ]
     },
     {
-        "id": 107,
         "type": "Romantic Hideaway Suite",
         "description": "Escape to romance in our Romantic Hideaway Suite. Intimate ambiance, candlelit dinners, and dreamy nights for the perfect couple's retreat.",
         "price": 500,
@@ -147,7 +140,6 @@
         ]
     },
     {
-        "id": 108,
         "type": "Business Executive Room",
         "description": "Elevate your business stay in our Business Executive Room. Sophisticated design, ergonomic workspace, and exclusive amenities for the modern professional.",
         "price": 280,
