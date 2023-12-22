@@ -1,8 +1,91 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import moment from "moment";
 
 const Bookings = () => {
-    const bookings = useLoaderData();
+    const allBookings = useLoaderData();
+    const [bookings, setBookings] = useState(allBookings);
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:5000/bookings/${id}`, {
+                        method: "DELETE"
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.deletedCount > 0) {
+                                Swal.fire({
+                                    title: "Deleted Successfully!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                });
+                                const result = bookings.filter(booking => booking._id !== id);
+                                setBookings(result);
+                            }
+                        })
+                }
+            });
+    }
+
+    const handleCancel = booking => {
+        const currentTime = moment();
+        const bookingTime = moment(booking.time, "MMMM Do, YYYY")
+        const daysDifference = bookingTime.diff(currentTime, 'days');
+        if (daysDifference >= 1) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Cancel it!"
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`http://localhost:5000/bookings/${booking._id}`, {
+                            method: "DELETE"
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.deletedCount > 0) {
+                                    Swal.fire({
+                                        title: "Item Canceled",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                    const result = bookings.filter(book => book._id !== booking._id);
+                                    setBookings(result);
+                                }
+                            })
+                    }
+                });
+
+        }
+        else {
+            Swal.fire({
+                title: "Can't Cancel",
+                text: "Item can be cancel minimum 1 day ago",
+                icon: "warning"
+            });
+        }
+    }
+
+    if (bookings.length < 1) {
+        return <div className="min-h-screen flex items-center justify-center text-3xl font-semibold"><h2>No Data avaiable</h2></div>
+    }
 
     return (
         <div className="my-10 md:mx-20">
@@ -25,7 +108,7 @@ const Bookings = () => {
                         {bookings.map(booking => <tr key={booking._id}>
                             <th>
                                 <Link to={`/updateBooking/${booking._id}`} className="text-2xl">
-                                    <FaEdit/>
+                                    <FaEdit />
                                 </Link>
                             </th>
                             <td>
@@ -45,8 +128,8 @@ const Bookings = () => {
                             </td>
                             <td>
                                 <div className="flex gap-5 items-center">
-                                    <button className="btn btn-ghost btn-sm">Cancel</button>
-                                    <button className="btn btn-sm">Delete</button>
+                                    <button onClick={() => handleCancel(booking)} className="btn btn-ghost btn-sm">Cancel</button>
+                                    <button onClick={() => handleDelete(booking._id)} className="btn btn-sm">Delete</button>
                                 </div>
                             </td>
                             <th>

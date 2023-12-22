@@ -20,7 +20,7 @@ const RoomDetail = () => {
         reviews,
         size,
         offer,
-        time: moment().format("dddd, MMMM Do, YYYY"),
+        time: moment().format("MMMM Do, YYYY"),
         email: user.email,
         booked: true
     };
