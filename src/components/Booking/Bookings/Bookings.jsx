@@ -1,12 +1,24 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
+import axios from "axios";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Bookings = () => {
-    const allBookings = useLoaderData();
-    const [bookings, setBookings] = useState(allBookings);
+    // const allBookings = useLoaderData();
+    const {user} = useContext(AuthContext);
+    // const [bookings, setBookings] = useState(allBookings);
+    const [bookings, setBookings] = useState([]);
+// 
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/bookings?email=${user.email}`, {withCredentials: true})
+        .then(res => {
+            setBookings(res.data)
+        })
+    }, [])
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -83,13 +95,13 @@ const Bookings = () => {
         }
     }
 
-    if (bookings.length < 1) {
-        return <div className="min-h-screen flex items-center justify-center text-3xl font-semibold"><h2>No Data avaiable</h2></div>
-    }
+    // if (bookings.length < 1) {
+    //     return <div className="min-h-screen flex items-center justify-center text-3xl font-semibold"><h2>No Data avaiable</h2></div>
+    // }
 
     return (
         <div className="my-10 md:mx-20">
-            <h2 className="text-2xl font-semibold text-center mb-5">Bookings</h2>
+            <h2 className="text-2xl font-semibold text-center mb-5">Your Bookings</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

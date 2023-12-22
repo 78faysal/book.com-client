@@ -1,16 +1,30 @@
 import { useLoaderData } from "react-router-dom";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import moment from 'moment';
+import DatePicker from "react-date-picker";
 
+
+// type ValuePiece = Date | null;
+
+// type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const RoomDetail = () => {
     const roomData = useLoaderData();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const [selectedDate, setSelectedDate] = useState('');
     const { type, description, image, price, reviews, size, offer, booked } = roomData;
     // console.log(moment().format("dddd, MMMM Do, YYYY"));
+    const [value, onChange] = useState(new Date());
+
+    const handleDate = e => {
+        const dateValue = e.target.value;
+    }
+    useEffect(() => {
+
+    }, [])
 
     const bookingData = {
         type,
@@ -20,8 +34,8 @@ const RoomDetail = () => {
         reviews,
         size,
         offer,
-        time: moment().format("MMMM Do, YYYY"),
-        email: user.email,
+        time: moment().format("YYYY-MMMM-D"),
+        email: user?.email,
         booked: true
     };
 
@@ -33,13 +47,13 @@ const RoomDetail = () => {
             },
             body: JSON.stringify(bookingData)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId){
-                Swal.fire("Congrats! You have booked the room");
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire("Congrats! You have booked the room");
+                }
+            })
     }
     return (
         <div>
@@ -52,6 +66,10 @@ const RoomDetail = () => {
                         <p><span className="text-lg font-semibold">Size:</span> {size}</p>
                         <p className=" flex items-center gap-2"><span className="text-lg font-semibold text-gray-800"><MdOutlineLocalOffer /> </span>{offer ? 'Available' : 'Not Available'}</p>
                         <p><span className="text-lg font-semibold">Reviews:</span> {reviews.length}</p>
+                        {/* <input aria-label="Date" onChange={handleDate} value={selectedDate} type="date" /> */}
+                        <div>
+                            <DatePicker onChange={onChange} value={value} />
+                        </div>
                         <h2 className="text-2xl font-semibold">${price} <span className="text-lg">p/N</span></h2>
                         {
                             booked === true ? <button disabled className="btn btn-primary ">Booked</button> : <button onClick={handleBooking} className="btn btn-primary">Book Now</button>

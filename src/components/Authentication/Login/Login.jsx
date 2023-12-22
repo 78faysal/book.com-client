@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogIn from "../GoogleLogIn/GoogleLogIn";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const location = useLocation();
@@ -21,6 +22,11 @@ const Login = () => {
         logInUser(email, password)
         .then(result => {
             if(result.user){
+                Swal.fire({
+                    title: "Congrats!",
+                    text: "User logged Successfully",
+                    icon: "success"
+                });
                 navigate(location.state ? location.state : '/')
             }
         })

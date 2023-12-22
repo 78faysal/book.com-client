@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogIn from "../GoogleLogIn/GoogleLogIn";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const location = useLocation();
@@ -19,6 +20,12 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             if(result.user){
+                Swal.fire({
+                    title: "Congrats!",
+                    text: "User Created Successfully",
+                    icon: "success"
+                });
+                navigate(location.state ? location.state : '/')
                 navigate(location.state ? location.state : '/')
             }
         })
