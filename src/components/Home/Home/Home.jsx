@@ -1,13 +1,13 @@
 import Banner from "../Banner/Banner";
 import ImageGallery from "../ImageGallery/ImageGallery";
-import Reviews from "../Reviews/Reviews";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
     return (
         <div>
             <Banner />
             <ImageGallery />
-            <Reviews />
+            <Testimonials />
         </div>
     );
 };
