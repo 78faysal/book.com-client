@@ -3,13 +3,14 @@ import { MdOutlineLocalOffer } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import moment from 'moment';
 
 
 const RoomDetail = () => {
     const roomData = useLoaderData();
     const {user} = useContext(AuthContext);
     const { type, description, image, price, reviews, size, offer, booked } = roomData;
-    console.log(roomData);
+    // console.log(moment().format("dddd, MMMM Do, YYYY"));
 
     const bookingData = {
         type,
@@ -19,6 +20,7 @@ const RoomDetail = () => {
         reviews,
         size,
         offer,
+        time: moment().format("dddd, MMMM Do, YYYY"),
         email: user.email,
         booked: true
     };
