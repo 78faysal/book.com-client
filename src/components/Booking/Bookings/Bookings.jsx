@@ -12,12 +12,21 @@ const Bookings = () => {
     // const [bookings, setBookings] = useState(allBookings);
     const [bookings, setBookings] = useState([]);
     const [currentBooking, setCurrentBooking] = useState(null);
-    // 
+    const [rooms, setRooms] = useState([]);
+
+    // const {user} = useContext(AuthContext);
 
     useEffect(() => {
         axios.get(`http://localhost:5000/bookings?email=${user.email}`, { withCredentials: true })
             .then(res => {
                 setBookings(res.data)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/rooms')
+            .then(res => {
+                setRooms(res.data);
             })
     }, [])
 
@@ -104,10 +113,32 @@ const Bookings = () => {
 
     const handleReviewSubmit = e => {
         e.preventDefault();
-        
+
         const rating = parseFloat(e.target.rating.value);
-        const review = e.target.review.value;
-        console.log(rating, review);
+        const reviewMessage = e.target.review.value;
+        const name = e.target.name.value;
+
+        const review = {
+            username: name,
+            email: user?.email,
+            rating,
+            reviewMessage,
+            timestamp: currentBooking.time
+        }
+
+        const targetedRoom = rooms.find(room => room._id === currentBooking._id);
+
+        axios.put(`http://localhost:5000/rooms/${targetedRoom._id}`, review)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Review Added",
+                        text: "Thanks for the review, hope you will always with us",
+                        icon: "success",
+                        appendTo: '.modal'
+                    });
+                }
+            })
     }
 
     // if (bookings.length < 1) {
@@ -155,13 +186,14 @@ const Bookings = () => {
                                 </Link>
                             </td>
                             <td>
+                                <button onClick={() => handleAddReview(booking)} className="btn btn-sm">Add Review</button>
+
+                            </td>
+                            <td>
                                 <div className="flex gap-5 items-center">
                                     <button onClick={() => handleCancel(booking)} className="btn btn-ghost btn-sm">Cancel</button>
                                     <button onClick={() => handleDelete(booking._id)} className="btn btn-sm">Delete</button>
                                 </div>
-                            </td>
-                            <td>
-                                <button onClick={() => handleAddReview(booking)} className="btn btn-sm">Add Review</button>
                             </td>
                             {/* <th>
                                 <button className="btn">Add Review</button> onClick={()=>
@@ -173,10 +205,16 @@ const Bookings = () => {
             </div>
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <dialog id="my_modal_1" className="modal w-full mx-auto">
+            <dialog id="my_modal_1" className="modal fixed w-full h-full top-0 left-0 flex items-center justify-center">
                 <div className="modal-box">
-                    <h2 className="text-2xl font-semibold text-center mt-3">{currentBooking.type}</h2>
+                    <h2 className="text-2xl font-semibold text-center mt-3">{currentBooking?.type}</h2>
                     <form className="card-body" onSubmit={handleReviewSubmit}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">name</span>
+                            </label>
+                            <input type="text" name="name" placeholder="Your name" className="input input-bordered" required />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Rating</span>
@@ -194,9 +232,9 @@ const Bookings = () => {
                                 <button className="btn btn-primary">Submit Review</button>
                             </div>
                             <div className="modal-action">
-                                <form method="dialog">
-                                    <button className="btn mb-6">Close</button>
-                                </form>
+                                <div method="dialog">
+                                    <button  onClick={() => document.getElementById('my_modal_1').close()} className="btn mb-6">Close</button>
+                                </div>
                             </div>
                         </div>
                     </form>
