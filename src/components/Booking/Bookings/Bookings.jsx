@@ -8,16 +8,17 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Bookings = () => {
     // const allBookings = useLoaderData();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     // const [bookings, setBookings] = useState(allBookings);
     const [bookings, setBookings] = useState([]);
-// 
+    const [currentBooking, setCurrentBooking] = useState(null);
+    // 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/bookings?email=${user.email}`, {withCredentials: true})
-        .then(res => {
-            setBookings(res.data)
-        })
+        axios.get(`http://localhost:5000/bookings?email=${user.email}`, { withCredentials: true })
+            .then(res => {
+                setBookings(res.data)
+            })
     }, [])
 
     const handleDelete = (id) => {
@@ -95,6 +96,20 @@ const Bookings = () => {
         }
     }
 
+    const handleAddReview = (booking) => {
+        document.getElementById('my_modal_1').showModal();
+        setCurrentBooking(booking)
+    }
+
+
+    const handleReviewSubmit = e => {
+        e.preventDefault();
+        
+        const rating = parseFloat(e.target.rating.value);
+        const review = e.target.review.value;
+        console.log(rating, review);
+    }
+
     // if (bookings.length < 1) {
     //     return <div className="min-h-screen flex items-center justify-center text-3xl font-semibold"><h2>No Data avaiable</h2></div>
     // }
@@ -113,15 +128,14 @@ const Bookings = () => {
                             <th>Name</th>
                             <th>Time</th>
                             <th>Action</th>
+                            <th>Review</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {bookings.map(booking => <tr key={booking._id}>
                             <th>
-                                <Link to={`/updateBooking/${booking._id}`} className="text-2xl">
-                                    <FaEdit />
-                                </Link>
+
                             </th>
                             <td>
                                 <div className="flex items-center gap-3">
@@ -135,8 +149,10 @@ const Bookings = () => {
                                     </div>
                                 </div>
                             </td>
-                            <td>
-                                {booking.time}
+                            <td className="flex items-center gap-5 mt-7">
+                                {booking.time} <Link to={`/updateBooking/${booking._id}`} className="text-2xl">
+                                    <FaEdit />
+                                </Link>
                             </td>
                             <td>
                                 <div className="flex gap-5 items-center">
@@ -144,8 +160,12 @@ const Bookings = () => {
                                     <button onClick={() => handleDelete(booking._id)} className="btn btn-sm">Delete</button>
                                 </div>
                             </td>
-                            <th>
-                            </th>
+                            <td>
+                                <button onClick={() => handleAddReview(booking)} className="btn btn-sm">Add Review</button>
+                            </td>
+                            {/* <th>
+                                <button className="btn">Add Review</button> onClick={()=>
+                            </th> */}
                         </tr>)}
                     </tbody>
 
@@ -153,18 +173,38 @@ const Bookings = () => {
             </div>
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            {/* <dialog id="my_modal_1" className="modal">
+            <dialog id="my_modal_1" className="modal w-full mx-auto">
                 <div className="modal-box">
-                    <img  alt="" />
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">Press ESC key or click the button below to close</p>
-                    <div className="modal-action">
-                        <form method="dialog">
-                            <button className="btn">Close</button>
-                        </form>
-                    </div>
+                    <h2 className="text-2xl font-semibold text-center mt-3">{currentBooking.type}</h2>
+                    <form className="card-body" onSubmit={handleReviewSubmit}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Rating</span>
+                            </label>
+                            <input type="number" min="0" name="rating" max="5" step="any" placeholder="ratings out of 5?" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Review</span>
+                            </label>
+                            <textarea name="review" className="textarea textarea-bordered" placeholder="Write your review" required></textarea>
+                        </div>
+                        <div className="flex flex-row-reverse items-center gap-5 justify-center">
+                            <div>
+                                <button className="btn btn-primary">Submit Review</button>
+                            </div>
+                            <div className="modal-action">
+                                <form method="dialog">
+                                    <button className="btn mb-6">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </form>
+
+                    {/* <div className="form-control mt-6">
+                        </div> */}
                 </div>
-            </dialog> */}
+            </dialog>
 
 
         </div>
