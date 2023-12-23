@@ -2,7 +2,7 @@ import { FaFacebook, FaYoutube, FaInstagram } from "react-icons/fa";
 const AboutUs = () => {
 
     return (
-        <div className="grid gap-10 md:grid-cols-2 items-center mx-20 my-20">
+        <div className="grid gap-10 md:grid-cols-2 items-center md:mx-20 my-20">
             <div>
                 <img className="" src="https://i.ibb.co/Mc2dpYT/hotel.jpg" alt="" />
             </div>

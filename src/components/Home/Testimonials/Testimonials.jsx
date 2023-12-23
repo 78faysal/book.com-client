@@ -14,21 +14,21 @@ const Testimonials = () => {
             mail: 'ami@manus.com'
         },
         {
-            image: 'https://i.ibb.co/41YMp8X/member-2.jpg',
+            image: 'https://i.ibb.co/pxpxRKh/member-1.jpg',
             name: 'Manus',
             rating: 4.5,
             message: 'Just a awesome environment',
             mail: 'ami@manus.com'
         },
         {
-            image: 'https://i.ibb.co/41YMp8X/member-2.jpg',
+            image: 'https://i.ibb.co/KGp7gM6/member-3.jpg',
             name: 'Manus',
             rating: 4.5,
             message: 'Just a awesome environment',
             mail: 'ami@manus.com'
         },
         {
-            image: 'https://i.ibb.co/41YMp8X/member-2.jpg',
+            image: 'https://i.ibb.co/Gdks1yM/member-4.jpg',
             name: 'Manus',
             rating: 4.5,
             message: 'Just a awesome environment',
@@ -51,11 +51,11 @@ const Testimonials = () => {
     ]
     return (
         <div>
-            <div className="w-full absolute my-10 bg-base-200 py-10 min-h-screen md:px-20 pt-28">
+            <div className="w-full absolute bg-base-200 py-10 mx-auto min-h-screen md:px-20 pt-28">
                 <div>
                     <div className='mb-10'>
                         <div>
-                            <h2 className="text-4xl font-semibold text-center mb-2">See What people says</h2>
+                            <h2 className="md:text-4xl text-3xl font-semibold text-center mb-2">See What people says</h2>
                             <p className='text-center'>Just a small sample of testimonials received from people who visited Evolution</p>
                         </div>
                     </div>

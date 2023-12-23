@@ -26,6 +26,7 @@ const Bookings = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/rooms')
             .then(res => {
+                console.log(res.data);
                 setRooms(res.data);
             })
     }, [])
@@ -47,6 +48,7 @@ const Bookings = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
+                            console.log(data);
                             if (data.deletedCount > 0) {
                                 Swal.fire({
                                     title: "Deleted Successfully!",
@@ -125,10 +127,12 @@ const Bookings = () => {
             reviewMessage,
             timestamp: currentBooking.time
         }
+        // room._id === currentBooking?._id
+        const targetedRoom = rooms.find(room => room._id == currentBooking._id);
+        console.log(review);
 
-        const targetedRoom = rooms.find(room => room._id === currentBooking._id);
 
-        axios.put(`http://localhost:5000/rooms/${targetedRoom._id}`, review)
+        axios.put(`http://localhost:5000/rooms/${targetedRoom?._id}`, {review: review})
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -139,6 +143,7 @@ const Bookings = () => {
                     });
                 }
             })
+            .catch(err => console.log(err))
     }
 
     // if (bookings.length < 1) {

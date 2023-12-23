@@ -6,6 +6,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import moment from 'moment';
 import DatePicker from "react-date-picker";
 import { TiStarFullOutline } from "react-icons/ti";
+import axios from "axios";
 
 
 // type ValuePiece = Date | null;
@@ -27,6 +28,10 @@ const RoomDetail = () => {
 
     }, [])
 
+    const confirmBooking = {
+        booked: true
+    }
+
     const bookingData = {
         _id,
         type,
@@ -41,21 +46,25 @@ const RoomDetail = () => {
         booked: true
     };
 
-    const handleBooking = () => {
-        fetch('http://localhost:5000/bookings', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(bookingData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
-                    Swal.fire("Congrats! You have booked the room");
-                }
-            })
+    const handleBooking = (id) => {
+        // fetch('http://localhost:5000/bookings', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(bookingData)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         if (data.insertedId) {
+        //             Swal.fire("Congrats! You have booked the room");
+        //         }
+        //     })
+
+
+        axios.put(`http://localhost:5000/rooms/${id}`, {booked: true})
+        .then(res => console.log(res.data))
     }
     return (
         <div className="md:py-20 py-10 md:px-20">
@@ -74,7 +83,7 @@ const RoomDetail = () => {
                         </div>
                         <h2 className="text-2xl font-semibold">${price} <span className="text-lg">p/N</span></h2>
                         {
-                            booked === true ? <button disabled className="btn btn-primary ">Booked</button> : <button onClick={handleBooking} className="btn btn-primary">Book Now</button>
+                            booked === true ? <button disabled className="btn btn-primary ">Booked</button> : <button onClick={() =>handleBooking(_id)} className="btn btn-primary">Book Now</button>
                         }
                     </div>
                 </div>

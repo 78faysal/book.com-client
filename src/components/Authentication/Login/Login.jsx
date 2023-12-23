@@ -31,7 +31,11 @@ const Login = () => {
             }
         })
         .catch(err => {
-            console.log(err.message);
+            Swal.fire({
+                title: "Ops!",
+                text: `${err.message}`,
+                icon: "warning"
+            });
         })
     }
 
