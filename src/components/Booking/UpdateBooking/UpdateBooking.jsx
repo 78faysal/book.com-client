@@ -15,7 +15,7 @@ const UpdateBooking = () => {
             time: time
         }
 
-        fetch(`http://localhost:5000/bookings/${booking._id}`, {
+        fetch(`https://book-com-server.vercel.app/bookings/${booking._id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

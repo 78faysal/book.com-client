@@ -17,14 +17,14 @@ const Bookings = () => {
     // const {user} = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/bookings?email=${user.email}`, { withCredentials: true })
+        axios.get(`https://book-com-server.vercel.app/bookings?email=${user.email}`, { withCredentials: true })
             .then(res => {
                 setBooking(res.data)
             })
     }, [])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/rooms`)
+        axios.get(`https://book-com-server.vercel.app/rooms`)
             .then(res => {
                 setRooms(res.data);
             })
@@ -42,7 +42,7 @@ const Bookings = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/bookings/${id}`, {
+                    fetch(`https://book-com-server.vercel.app/bookings/${id}`, {
                         method: "DELETE"
                     })
                         .then(res => res.json())
@@ -78,7 +78,7 @@ const Bookings = () => {
             })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        axios.put(`http://localhost:5000/rooms/${booking._id}`, {booked: false})
+                        axios.put(`https://book-com-server.vercel.app/rooms/${booking._id}`, {booked: false})
                             .then(res => {
                                 if (res.data.modifiedCount > 0) {
                                     Swal.fire({
@@ -128,7 +128,7 @@ const Bookings = () => {
         console.log(review);
 
 
-        axios.put(`http://localhost:5000/rooms/${targetedRoom?._id}`, {review: review})
+        axios.put(`https://book-com-server.vercel.app/rooms/${targetedRoom?._id}`, {review: review})
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({

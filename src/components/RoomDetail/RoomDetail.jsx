@@ -47,7 +47,7 @@ const RoomDetail = () => {
     };
 
     const handleBooking = (id) => {
-        // fetch('http://localhost:5000/bookings', {
+        // fetch('https://book-com-server.vercel.app/bookings', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'
@@ -63,7 +63,7 @@ const RoomDetail = () => {
         //     })
 
 
-        axios.put(`http://localhost:5000/rooms/${id}`, {booked: true, email: user?.email, time: moment().format("YYYY-MMMM-D")})
+        axios.put(`https://book-com-server.vercel.app/rooms/${id}`, {booked: true, email: user?.email, time: moment().format("YYYY-MMMM-D")})
         .then(res => {
             if(res.data.modifiedCount > 0){
                 Swal.fire({

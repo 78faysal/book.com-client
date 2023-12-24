@@ -33,23 +33,23 @@ const router = createBrowserRouter([
             },
             {
                 path: '/rooms',
-                // loader: () => fetch('http://localhost:5000/rooms'),
+                // loader: () => fetch('https://book-com-server.vercel.app/rooms'),
                 element: <Rooms />
             },
             {
                 path: '/roomDetail/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/rooms/${params.id}`),
+                loader: ({params}) => fetch(`https://book-com-server.vercel.app/rooms/${params.id}`),
                 element: <RoomDetail />
             },
             {
                 path: '/updateBooking/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`),
+                loader: ({params}) => fetch(`https://book-com-server.vercel.app/bookings/${params.id}`),
                 element: <PrivateRoute><UpdateBooking /></PrivateRoute>
             },
             {
                 path: '/bookings',
                 element: <PrivateRoute><Bookings /></PrivateRoute>,
-                // loader: () => fetch('http://localhost:5000/bookings')
+                // loader: () => fetch('https://book-com-server.vercel.app/bookings')
             }
         ]
     },

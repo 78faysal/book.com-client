@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ImageGallery = () => {
     const [images, setImages] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/rooms')
+        axios.get('https://book-com-server.vercel.app/rooms')
             .then(res => {
                 const mapedImages = res.data.map(data => data.image)
                 setImages(mapedImages)
