@@ -63,8 +63,16 @@ const RoomDetail = () => {
         //     })
 
 
-        axios.put(`http://localhost:5000/rooms/${id}`, {booked: true})
-        .then(res => console.log(res.data))
+        axios.put(`http://localhost:5000/rooms/${id}`, {booked: true, email: user?.email, time: moment().format("YYYY-MMMM-D")})
+        .then(res => {
+            if(res.data.modifiedCount > 0){
+                Swal.fire({
+                    title: "Room Added",
+                    text: "Your room booking has been confirmed",
+                    icon: "success",
+                });
+            }
+        })
     }
     return (
         <div className="md:py-20 py-10 md:px-20">
@@ -78,9 +86,9 @@ const RoomDetail = () => {
                         <p className=" flex items-center gap-2"><span className="text-lg font-semibold text-gray-800"><MdOutlineLocalOffer /> </span>{offer ? 'Available' : 'Not Available'}</p>
                         <p><span className="text-lg font-semibold">Reviews:</span> {reviews?.length}</p>
                         {/* <input aria-label="Date" onChange={handleDate} value={selectedDate} type="date" /> */}
-                        <div>
+                        {/* <div>
                             <DatePicker onChange={onChange} value={value} />
-                        </div>
+                        </div> */}
                         <h2 className="text-2xl font-semibold">${price} <span className="text-lg">p/N</span></h2>
                         {
                             booked === true ? <button disabled className="btn btn-primary ">Booked</button> : <button onClick={() =>handleBooking(_id)} className="btn btn-primary">Book Now</button>

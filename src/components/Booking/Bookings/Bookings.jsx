@@ -10,7 +10,7 @@ const Bookings = () => {
     // const allBookings = useLoaderData();
     const { user } = useContext(AuthContext);
     // const [bookings, setBookings] = useState(allBookings);
-    const [bookings, setBookings] = useState([]);
+    const [booking, setBooking] = useState([]);
     const [currentBooking, setCurrentBooking] = useState(null);
     const [rooms, setRooms] = useState([]);
 
@@ -19,14 +19,13 @@ const Bookings = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/bookings?email=${user.email}`, { withCredentials: true })
             .then(res => {
-                setBookings(res.data)
+                setBooking(res.data)
             })
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/rooms')
+        axios.get(`http://localhost:5000/rooms`)
             .then(res => {
-                console.log(res.data);
                 setRooms(res.data);
             })
     }, [])
@@ -55,8 +54,8 @@ const Bookings = () => {
                                     text: "Your file has been deleted.",
                                     icon: "success"
                                 });
-                                const result = bookings.filter(booking => booking._id !== id);
-                                setBookings(result);
+                                const result = booking.filter(booking => booking._id !== id);
+                                setBooking(result);
                             }
                         })
                 }
@@ -79,19 +78,16 @@ const Bookings = () => {
             })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        fetch(`http://localhost:5000/bookings/${booking._id}`, {
-                            method: "DELETE"
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.deletedCount > 0) {
+                        axios.put(`http://localhost:5000/rooms/${booking._id}`, {booked: false})
+                            .then(res => {
+                                if (res.data.modifiedCount > 0) {
                                     Swal.fire({
                                         title: "Item Canceled",
                                         text: "Your file has been deleted.",
                                         icon: "success"
                                     });
-                                    const result = bookings.filter(book => book._id !== booking._id);
-                                    setBookings(result);
+                                    const result = booking.filter(book => book._id !== booking._id);
+                                    setBooking(result);
                                 }
                             })
                     }
@@ -169,7 +165,7 @@ const Bookings = () => {
                     </thead>
                     <tbody>
 
-                        {bookings.map(booking => <tr key={booking._id}>
+                        {booking.map(booking => <tr key={booking._id}>
                             <th>
 
                             </th>
